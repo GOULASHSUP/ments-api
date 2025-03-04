@@ -9,9 +9,7 @@ dotenvFlow.config();
 // create express application
 const app: Application = express();
 
-/**
- * 
- */
+
 export function startServer() {
 
     app.use(express.json());

@@ -1,9 +1,11 @@
 import { Schema, model } from 'mongoose';
-import { Product } from '../interfaces/product';
+import { Car } from '../interfaces/car';
 
-const productSchema = new Schema<Product>({
-      name: { type: String, required: true, min: 6, max: 255},
-      description: { type: String, required: false, min: 6, max: 255},
+const carSchema = new Schema<Car>({
+      brand: { type: String, required: true, min: 6, max: 255},
+      model: { type: String, required: true, min: 6, max: 255},
+      engine: { type: String, required: true, min: 6, max: 255},
+      year: { type: Number, required: true},
       imageURL: { type: String, required: true},
       price: { type: Number, required: true},
       stock: { type: Number, required: true},
@@ -13,4 +15,4 @@ const productSchema = new Schema<Product>({
       _createdBy: { type: String, ref: 'User', required: true }
 });
 
-export const productModel = model<Product>('Product', productSchema);
+export const carModel = model<Car>('Car', carSchema);
