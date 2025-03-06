@@ -89,10 +89,11 @@ export async function updateCarById(req: Request, res: Response) {
             res.status(404).send("Can't update car");
         }
         else {
+            //res.status(200).send(result);
             res.status(200).send("Car updated successfully");
         }
 
-        res.status(200).send(result);
+        
     }
     catch (err) {
         res.status(500).send("Error updating car by id" + err);
@@ -123,7 +124,7 @@ export async function deleteCarById(req: Request, res: Response) {
             res.status(200).send("Car deleted successfully");
         }
 
-        res.status(200).send(result);
+        //res.status(200).send(result);
     }
     catch (err) {
         res.status(500).send("Error deleting car by id" + err);

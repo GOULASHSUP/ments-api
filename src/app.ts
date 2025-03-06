@@ -1,6 +1,7 @@
 import express, { Application, Request, Response } from 'express';
 import dotenvFlow from 'dotenv-flow';
 import { testConnection } from './repository/database';
+import cors from 'cors';
 
 import routes from './routes';
 
@@ -9,8 +10,19 @@ dotenvFlow.config();
 // create express application
 const app: Application = express();
 
+function setupCors() {
+    app.use(cors({
+        origin: "*",
+        methods: 'GET,PUT,POST,DELETE',
+        allowedHeaders: ['auth-token', 'Origin', 'X-Requested-With', 'Content-Type', 'Accept'],
+        credentials: true,
+
+    }))
+}
 
 export function startServer() {
+
+    setupCors();
 
     app.use(express.json());
 
