@@ -1,6 +1,7 @@
 import express, { Application, Request, Response } from 'express';
 import dotenvFlow from 'dotenv-flow';
 import { testConnection } from './repository/database';
+import { setupDocs } from './util/documentation';
 import cors from 'cors';
 
 import routes from './routes';
@@ -27,6 +28,8 @@ export function startServer() {
     app.use(express.json());
 
     app.use('/api', routes);
+
+    setupDocs(app);
 
     testConnection();//test database connection
 
