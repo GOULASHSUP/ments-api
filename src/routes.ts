@@ -7,6 +7,7 @@ import {
     deleteCarById
 } from './controllers/carController';
 import { loginUser, registerUser, verifyToken } from './controllers/authController';
+import { startCron } from './controllers/devToolsController';
 
 const router: Router = Router();
 
@@ -209,5 +210,19 @@ router.put('/cars/:id', verifyToken, updateCarById);
  *         description: Car not found
  */
 router.delete('/cars/:id', verifyToken, deleteCarById);
+
+/**
+ * @swagger
+ * /start-cron:
+ *   get:
+ *     tags:
+ *       - Utility Routes
+ *     summary: Start the server-pinging cron job
+ *     description: Kicks off a cron job to ping the server every 5 minutes
+ *     responses:
+ *       200:
+ *         description: Cron job started
+ */
+router.get('/start-cron', startCron);
 
 export default router;
