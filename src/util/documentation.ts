@@ -19,8 +19,8 @@ export function setupDocs(app: Application) {
             },
             {
                 url: 'https://secondgear-frontend.onrender.com/api/',
-                description: 'Local development server',
-            }
+                description: 'Live server',
+            },
         ],
         components: {
             securitySchemes: {
