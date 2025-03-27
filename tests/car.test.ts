@@ -116,4 +116,63 @@ export function carTestCollection() {
         expect(updateRes.status()).toBe(200);
         //expect(updateJson.price).toBe(updates.price);
     });
+
+    test("Authenticated user can delete a car by its ID", async ({ request }) => {
+        // Step 1: Register user
+        const user = {
+            name: "Car Deleter",
+            email: "deletecar@example.com",
+            password: "securePassword789",
+        };
+
+        const registerRes = await request.post("/api/user/register", { data: user });
+        expect(registerRes.status()).toBe(201);
+
+        // Step 2: Login
+        const loginRes = await request.post("/api/user/login", {
+            data: { email: user.email, password: user.password },
+        });
+        const loginJson = await loginRes.json();
+        const token = loginJson.data.token;
+        const userId = loginJson.data.userId;
+
+        // Step 3: Create a car to delete later
+        const carRes = await request.post("/api/cars", {
+            data: {
+                brand: "BMW",
+                model: "M3",
+                engine: "3.0L Twin Turbo",
+                year: 2020,
+                imageURL: "https://example.com/bmw-m3.jpg",
+                price: 70000,
+                stock: 1,
+                isOnDiscount: false,
+                discountPct: 0,
+                _createdBy: userId,
+            },
+            headers: {
+                "auth-token": token,
+            },
+        });
+
+        const createdCar = await carRes.json();
+        expect(carRes.status()).toBe(201);
+
+        // Step 4: Delete the car
+        const deleteRes = await request.delete(`/api/cars/${createdCar._id}`, {
+            headers: {
+                "auth-token": token,
+            },
+        });
+
+        expect(deleteRes.status()).toBe(200);
+        expect(await deleteRes.text()).toBe("Car deleted successfully");
+
+        // Step 5: Confirm if it's gone
+        const getRes = await request.get(`/api/cars/${createdCar._id}`);
+        const getJson = await getRes.json();
+
+        expect(getRes.status()).toBe(200);
+        expect(getJson.length).toBe(0);
+    });
 }
