@@ -28,6 +28,10 @@ This project was developed as part of the **Development Environments** course.
 
 ---
 
+![Build Status](https://github.com/GOULASHSUP/ments-api/actions/workflows/main.yaml/badge.svg)
+
+---
+
 ## Special Thanks
 
 A big thank you to my teacher: Søren!
