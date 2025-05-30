@@ -11,7 +11,7 @@ const carSchema = new Schema<Car>({
       stock: { type: Number, required: true},
       isOnDiscount: { type: Boolean, required: true, default: false},
       discountPct: { type: Number, required: true, default: 0},
-      isHidden: { type: Boolean, required: false},
+      soldout: { type: Boolean, required: false},
       _createdBy: { type: String, ref: 'User', required: true }
 });
 

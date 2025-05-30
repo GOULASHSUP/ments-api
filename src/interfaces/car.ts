@@ -10,6 +10,6 @@ export interface Car extends Document {
       stock: number;
       isOnDiscount: boolean;
       discountPct: number;
-      isHidden: boolean;
+      soldout: boolean;
       _createdBy: User['id'];
 }
