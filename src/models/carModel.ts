@@ -2,10 +2,10 @@ import { Schema, model } from 'mongoose';
 import { Car } from '../interfaces/car';
 
 const carSchema = new Schema<Car>({
-      brand: { type: String, required: true, min: 6, max: 255},
-      model: { type: String, required: true, min: 6, max: 255},
-      engine: { type: String, required: true, min: 6, max: 255},
-      year: { type: Number, required: true},
+      brand: { type: String, required: true, min: 1, max: 20},
+      model: { type: String, required: true, min: 1, max: 20},
+      engine: { type: String, required: true, min: 1, max: 20},
+      year: { type: Number, required: true, min: 1886, max: new Date().getFullYear() + 1}, 
       imageURL: { type: String, required: true},
       price: { type: Number, required: true},
       stock: { type: Number, required: true},
