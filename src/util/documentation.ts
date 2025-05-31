@@ -43,7 +43,7 @@ export function setupDocs(app: Application) {
                         stock: { type: 'number' },
                         discount: { type: 'boolean' },
                         discountPct: { type: 'number' },
-                        isHidden: { type: 'boolean' },
+                        soldout: { type: 'boolean' },
                         _createdBy: { type: 'string' },
                     },
                 },
